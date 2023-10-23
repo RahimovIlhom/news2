@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, New
+from .models import Category, New, ContactMessage
 
 # Register your models here.
 
@@ -14,3 +14,4 @@ class NewsAdmin(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(New, NewsAdmin)
+admin.site.register(ContactMessage)
