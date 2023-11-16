@@ -1,22 +1,21 @@
 {% extends 'news/base.html' %}
 {% load static %}
+
 {% load hitcount_tags %}
 
+{% block title %}Qidiruv{% endblock title %}
 
 {% block content %}
     <!-- News With Sidebar Start -->
-    <div class="container-fluid mt-2 pt-3">
+    <div class="container-fluid mt-5 pt-3">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row">
                         <div class="col-12">
-                            <div class="section-title">
-                                <h4 class="m-0 text-uppercase font-weight-bold">Kategoriya: {{ category }}</h4>
-                            </div>
                         </div>
 
-                        {% for news in category_news_short %}
+                        {% for news in search_news %}
                         <div class="col-lg-6">
                             <div class="position-relative mb-3">
                                 <img class="img-fluid w-100" src="{{ news.image.url }}" style="object-fit: cover;">
@@ -26,8 +25,8 @@
                                             href="">{{ news.category }}</a>
                                         <a class="text-body" href=""><small>{{ news.publish_time }}</small></a>
                                     </div>
-                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">{{ news.title|slice:'0:20' }}</a>
-                                    <p class="m-0">{{ news.summary|slice:'0:80' }}</p>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                                    <p class="m-0">{{ news.summary }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                     <div class="d-flex align-items-center">
@@ -36,18 +35,18 @@
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <small class="ml-3"><i class="far fa-eye mr-2"></i>{% get_hit_count for news %}</small>
-                                        <small class="ml-3"><i class="far fa-comment mr-2"></i>{{ news.comments.count }}</small>
+                                        <small class="ml-3"><i class="far fa-comment mr-2"></i>{{ news.comment.count }}</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
 
-
                         <div class="col-lg-12 mb-3">
+
                         </div>
 
-                        {% for news in category_news %}
+                        {% for news in search_news_all %}
                         <div class="col-lg-6">
                             <div class="position-relative mb-3">
                                 <img class="img-fluid w-100" src="{{ news.image.url }}" style="object-fit: cover;">
@@ -57,7 +56,7 @@
                                             href="">{{ news.category }}</a>
                                         <a class="text-body" href=""><small>{{ news.publish_time }}</small></a>
                                     </div>
-                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">{{ news.title|slice:'0:20' }}</a>
+                                    <a class="h4 d-block mb-0 text-secondary text-uppercase font-weight-bold" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
                                 </div>
                                 <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                     <div class="d-flex align-items-center">
@@ -66,7 +65,7 @@
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <small class="ml-3"><i class="far fa-eye mr-2"></i>{% get_hit_count for news %}</small>
-                                        <small class="ml-3"><i class="far fa-comment mr-2"></i>{{ news.comments.count }}</small>
+                                        <small class="ml-3"><i class="far fa-comment mr-2"></i>{{ news.comment.count }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +77,6 @@
                 </div>
 
                 <div class="col-lg-4">
-
 
 
                     <!-- Popular News Start -->
@@ -102,6 +100,7 @@
                         </div>
                     </div>
                     <!-- Popular News End -->
+
 
                 </div>
             </div>
