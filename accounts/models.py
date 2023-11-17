@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='users', null=True, blank=True)
+    phone_number = models.CharField(max_length=12, default=None, null=True)
     birth_of_day = models.DateTimeField(null=True, blank=True)
 
     objects = models.Manager()

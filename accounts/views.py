@@ -45,13 +45,13 @@ def dashboard(request):
 
 
 def edit_profile(request):
-    if request.POST:
+    if request == 'POST':
         user_form = UserEditForm(instance=request.user, data=request.POST)
         profile_form = ProfileEditForm(instance=request.user.profile, data=request.POST, files=request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
+            print(user_form.cleaned_data)
             profile_form.save()
-            return render(request, 'accounts/profile.html')
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
@@ -61,4 +61,4 @@ def edit_profile(request):
         'profile_form': profile_form,
     }
 
-    return render(request, 'accounts/user_edit.html', context)
+    return render(request, 'accounts/profile.html', context)

@@ -76,7 +76,7 @@
                             {% if user.is_authenticated %}
                                 <a href="#" class="nav-link dropdown-toggle text-body small" data-toggle="dropdown">{{ user.username }}</a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="{% url 'profile' %}" class="dropdown-item">Profil</a>
+                                    <a href="{% url 'profile_edit' %}" class="dropdown-item">Profil</a>
                                     <a href="#" class="dropdown-item">Parolni yangilash</a>
                                     <a href="{% url 'logout' %}" class="dropdown-item">Chiqish</a>
                                 </div>

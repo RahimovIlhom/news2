@@ -32,7 +32,7 @@
             <div class="card mb-4">
                 <div class="card-header">Hisob tafsilotlari</div>
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <!-- Form Group (username)-->
                         <div class="mb-3">
@@ -44,25 +44,12 @@
                             <!-- Form Group (first name)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputFirstName">Ism</label>
-                                <input class="form-control" id="inputFirstName" type="text" placeholder="Ismingizni kiriting" value="{{ user.first_name }}" name="first_name">
+                                <input class="form-control" id="inputFirstName" placeholder="Ismingizni kiriting" value="{{ user.first_name }}" name="first_name">
                             </div>
                             <!-- Form Group (last name)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLastName">Familiya</label>
                                 <input class="form-control" id="inputLastName" type="text" placeholder="Familiyangizni kiriting" value="{{ user.last_name }}" name="last_name">
-                            </div>
-                        </div>
-                        <!-- Form Row        -->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (organization name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Tashkilot nomi</label>
-                                <input class="form-control" id="inputOrgName" type="text" placeholder="Tashkilotingiz nomini kiriting" value="Start Bootstrap">
-                            </div>
-                            <!-- Form Group (location)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Manzil</label>
-                                <input class="form-control" id="inputLocation" type="text" placeholder="Manzilingizni kiriting" value="San Francisco, CA">
                             </div>
                         </div>
                         <!-- Form Group (email address)-->
@@ -75,12 +62,12 @@
                             <!-- Form Group (phone number)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputPhone">Telefon raqam</label>
-                                <input class="form-control" id="inputPhone" type="tel" placeholder="Telefon raqamingizni kiriting" value="555-123-4567">
+                                <input class="form-control" id="inputPhone" type="tel" placeholder="Telefon raqamingizni kiriting" value="{{ user.profile.phone_number }}" name="phone_number">
                             </div>
                             <!-- Form Group (birthday)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputBirthday">Tug'ilgan sana</label>
-                                <input class="form-control" id="inputBirthday" type="text" placeholder="Tug'ilgan kuningizni kiriting" value="{{ user.profile.birth_of_day }}">
+                                <input class="form-control" id="inputBirthday" type="text" placeholder="Tug'ilgan kuningizni kiriting" value="{{ user.profile.birth_of_day }}" name="birth_of_day">
                             </div>
                         </div>
                         <!-- Save changes button-->
